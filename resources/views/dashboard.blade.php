@@ -17,102 +17,76 @@
         </div>
         <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
-                <img class="avatar user-thumb" src="{{ asset('assets/images/author/avatar.png') }}" alt="avatar">
-                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
+                <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->name }} <i class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Settings</a>
-                   <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="dropdown-item">Log Out</button>
-                   </form>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item text-secondary">Logout</button>
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- page title area end -->
+
 <div class="main-content-inner">
-    <!-- sales report area start -->
-    <div class="sales-report-area mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="single-report mb-xs-30">
-                    <div class="s-report-inner pr--20 pt--30 mb-3">
-                        <div class="icon"><i class="fa fa-btc"></i></div>
-                        <div class="s-report-title d-flex justify-content-between">
-                            <h4 class="header-title mb-0">Bitcoin</h4>
-                            <p>24 H</p>
-                        </div>
-                        <div class="d-flex justify-content-between pb-2">
-                            <h2>$ 4567809,987</h2>
-                            <span>- 45.87</span>
-                        </div>
-                    </div>
-                    <canvas id="coin_sales1" height="100"></canvas>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="single-report mb-xs-30">
-                    <div class="s-report-inner pr--20 pt--30 mb-3">
-                        <div class="icon"><i class="fa fa-btc"></i></div>
-                        <div class="s-report-title d-flex justify-content-between">
-                            <h4 class="header-title mb-0">Bitcoin Dash</h4>
-                            <p>24 H</p>
-                        </div>
-                        <div class="d-flex justify-content-between pb-2">
-                            <h2>$ 4567809,987</h2>
-                            <span>- 45.87</span>
-                        </div>
-                    </div>
-                    <canvas id="coin_sales2" height="100"></canvas>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="single-report">
-                    <div class="s-report-inner pr--20 pt--30 mb-3">
-                        <div class="icon"><i class="fa fa-eur"></i></div>
-                        <div class="s-report-title d-flex justify-content-between">
-                            <h4 class="header-title mb-0">Euthorium</h4>
-                            <p>24 H</p>
-                        </div>
-                        <div class="d-flex justify-content-between pb-2">
-                            <h2>$ 4567809,987</h2>
-                            <span>- 45.87</span>
-                        </div>
-                    </div>
-                    <canvas id="coin_sales3" height="100"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- sales report area end -->
-    <!-- overview area start -->
     <div class="row">
-        <div class="col-xl-9 col-lg-8">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="header-title mb-0">Overview</h4>
-                        <select class="custome-select border-0 pr-3">
-                            <option selected>Last 24 Hours</option>
-                            <option value="0">01 July 2018</option>
-                        </select>
+        <!-- seo fact area start -->
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-6 mt-5 mb-3">
+                    <div class="card">
+                        <div class="seo-fact sbg1">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="ti-thumb-up"></i> Likes</div>
+                                <h2>2,315</h2>
+                            </div>
+                            <canvas id="seolinechart1" height="50"></canvas>
+                        </div>
                     </div>
-                    <div id="verview-shart"></div>
                 </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-4 coin-distribution">
-            <div class="card h-full">
-                <div class="card-body">
-                    <h4 class="header-title mb-0">Coin Distribution</h4>
-                    <div id="coin_distribution"></div>
+                <div class="col-md-6 mt-md-5 mb-3">
+                    <div class="card">
+                        <div class="seo-fact sbg2">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="ti-share"></i> Share</div>
+                                <h2>3,984</h2>
+                            </div>
+                            <canvas id="seolinechart2" height="50"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-lg-0">
+                    <div class="card">
+                        <div class="seo-fact sbg3">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon">Impressions</div>
+                                <canvas id="seolinechart3" height="60"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="seo-fact sbg4">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon">New Users</div>
+                                <canvas id="seolinechart4" height="60"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- overview area end -->        
 </div>
+
+{{-- <li class="settings-btn">
+    <i class="ti-settings"></i>
+</li> --}}
 
 
 @endsection

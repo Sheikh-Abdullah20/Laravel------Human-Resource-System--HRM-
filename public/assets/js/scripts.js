@@ -93,25 +93,113 @@
         });
     }, false);
 
+
+     /*================================
+    jquery DatePicker
+    ==================================*/
+    // Employees
+    $(document).ready(function() {
+        $('#employee_dob').datepicker({
+            dateFormat: 'mm/dd/yy', 
+            changeMonth: true,      
+            changeYear: true,       
+            yearRange: "1900:+10",
+            showAnim: 'slideDown'  
+        });
+    });
+
+    $(document).ready(function() {
+        $('#hiring_date').datepicker({
+            dateFormat: 'mm/dd/yy', 
+            changeMonth: true,      
+            changeYear: true,    
+            yearRange: "1900:+10",   
+            showAnim: 'slideDown'  
+        });
+    });
+
+
     /*================================
     datatable active
     ==================================*/
-    if ($('#table').length) {
-        $('#table').DataTable({
-            responsive: true
-            
+    if ($('#Department_table').length) {
+        $('#Department_table').DataTable({
+            responsive: true,
+             dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'csv',
+                    text: '<i class="fa fa-file-excel-o"></i>',
+                    title: 'Departments',
+                    className: 'btn btn-sm font-sm btn-success',
+                    exportOptions: {
+                     columns: ':visible:not(.no-print)'
+                    }
+                }, {
+                    extend: 'pdf',
+                    text: '<i class="fa fa-file-pdf-o"></i>',
+                    title: 'Departments',
+                    className: 'btn btn-sm font-sm btn-danger',
+                    exportOptions: {
+                        columns: ':visible:not(.no-print)'
+                    }
+                }, {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i>',
+                    title: 'Departments',
+                    className: 'btn btn-sm font-sm btn-primary',
+                    exportOptions: {
+                       columns: ':visible:not(.no-print)'
+                    }
+                },
+            ],initComplete: function() {
+                $("#Department_table_filter").appendTo(".dt-buttons");
+            }
+
+           
         });
     }
-    if ($('#dataTable2').length) {
-        $('#dataTable2').DataTable({
-            responsive: true
+
+    if ($('#Employee_table').length) {
+        $('#Employee_table').DataTable({
+            responsive: true,
+             dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'csv',
+                    text: '<i class="fa fa-file-excel-o"></i>',
+                    title: 'Employees',
+                    className: 'btn btn-sm font-sm btn-success',
+                    exportOptions: {
+                     columns: ':visible:not(.no-print)'
+                    }
+                }, {
+                    extend: 'pdf',
+                    text: '<i class="fa fa-file-pdf-o"></i>',
+                    title: 'Employees',
+                    className: 'btn btn-sm font-sm btn-danger',
+                    exportOptions: {
+                        columns: ':visible:not(.no-print)'
+                    }
+                }, {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i>',
+                    title: 'Employees',
+                    className: 'btn btn-sm font-sm btn-primary',
+                    exportOptions: {
+                       columns: ':visible:not(.no-print)'
+                    }
+                },
+            ],initComplete: function() {
+                $("#Employee_table_filter").appendTo(".dt-buttons");
+            }
+
+           
         });
     }
-    if ($('#dataTable3').length) {
-        $('#dataTable3').DataTable({
-            responsive: true
-        });
-    }
+
+
+   
 
 
     /*================================
