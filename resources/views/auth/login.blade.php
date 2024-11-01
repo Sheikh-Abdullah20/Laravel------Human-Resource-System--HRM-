@@ -17,7 +17,7 @@
                 <div class="login-form-body">
                     <div class="form-gp">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" id="exampleInputEmail1" name="email">
+                        <input type="email" id="exampleInputEmail1" name="email" value="{{ old("email") }}">
                         <i class="ti-email"></i>
                         <div class="text-danger">
                             @error('email')

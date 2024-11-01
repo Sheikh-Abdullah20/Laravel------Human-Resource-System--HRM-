@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -13,13 +14,14 @@ class EmployeeController extends Controller
     {
         $employees = Employee::all();
         
-        return view("employees.index",compact("employees"));
+        return view("Employees.employee_list.index",compact("employees"));
     }
 
     public function create()
     {
         $departments = Department::all();
-        return view("employees.create",compact("departments"));
+        $schedules = Schedule::all();
+        return view("Employees.employee_list.create",compact("departments","schedules"));
     }
 
     
@@ -32,6 +34,7 @@ class EmployeeController extends Controller
             'date_of_hiring' => 'required|date',
             'department_id' => 'required|numeric',
             'employee_position' => 'required|min:3',
+            'employee_schedule' => 'required|numeric',
 
         ]);
 
@@ -52,7 +55,8 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
         $departments = Department::all();
-        return view("employees.edit",compact('employee',"departments"));
+        $schedules = Schedule::all();
+        return view("Employees.employee_list.edit",compact('employee',"departments","schedules"));
     }
 
    
@@ -65,6 +69,8 @@ class EmployeeController extends Controller
             'date_of_hiring' => 'required|date',
             'department_id' => 'required|numeric',
             'employee_position' => 'required|min:3',
+            'employee_schedule' => 'required|numeric',
+
 
         ]);
 
@@ -86,6 +92,27 @@ class EmployeeController extends Controller
         
     }
 
+
+    public function deletebyselection(Request $request){
+
+        $ids = $request->input("employee_ids");
+
+        $delete = Employee::whereIn('id',$ids)->delete();
+
+        if($delete){
+            return response()->json([
+                'status' => true,
+                'message' => 'Employees deleted successfully'
+            ]);
+        }else{
+            return response()->json([
+               'status' => false,
+               'message' => 'Failed to delete employees'
+            ]);
+        }
+        \Log::info($ids);
+
+    }
     
     public function destroy(string $id)
     {

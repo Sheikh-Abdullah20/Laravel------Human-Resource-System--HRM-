@@ -2131,6 +2131,9 @@ table.dataTable thead td {
     border-bottom-color: transparent;
 }
 
+
+
+
 .datatable-primary .dataTables_paginate .page-item.active .page-link,
 .datatable-primary .dataTables_paginate .page-item .page-link:hover {
     background-color: #4336fb;

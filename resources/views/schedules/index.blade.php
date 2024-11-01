@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section("title","Department")
+@section("title","Schedule")
 
 @section('content')
 
@@ -11,40 +11,44 @@
             <div class="card">
                 <div class="card-body">
                    <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h2 class="display-5">Departments</h2>
-                    <a href="{{ route('department.create') }}" class="btn btn-outline-primary">Create Department</a>
+                    <h2 class="display-5">Schedule</h2>
+                    <a href="{{ route('schedule.create') }}" class="btn btn-outline-primary">Create Schedule</a>
                    </div>
                     <div class="single-table mt-5">
                         <div class="data-tables">
-                            <table id="Department_table" class="text-center">
+                            <table id="schedule_table" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>
                                         <th></th>
                                         <th>
-                                        <input type="checkbox" class="form-control" id="select_all">    
-                                        </th>   
-                                        <th>Name</th>
+                                            <input type="checkbox" class="form-control" id="select_all">   
+                                        </th>
+                                        <th>Schedule Name</th>
+                                        <th>Check-in</th>
+                                        <th>Check-out</th>
                                         <th>Date</th>
                                         <th class="no-print">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($departments as $department)
+                                    @foreach($schedules as $schedule)
 
                                     <tr>
                                         <td></td>
-                                       <td>
-                                        <input type="checkbox" class="form-control each_select" value="{{ $department->id }}">  
-                                       </td>
-                                        <td>{{ $department->department_name }}</td>
-                                        <td>{{ $department->created_at->format("Y-m-d") }}</td>
+                                        <td>
+                                            <input type="checkbox" class="form-control each_select" value="{{ $schedule->id }}">  
+                                        </td>
+                                        <td>{{ $schedule->name }}</td>
+                                        <td>{{ $schedule->checkin}}</td>
+                                        <td>{{ $schedule->checkout}}</td>
+                                        <td>{{ $schedule->created_at->format("Y-m-d") }}</td>
                                         <td>
                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform:translate3d(15px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a class="dropdown-item" href="{{ route('department.edit',$department) }}">Edit</a>
-                                                <form action="{{ route('department.destroy',$department) }}" method="POST" onclick="return confirm('are You sure you want to delete this department?')">
+                                                <a class="dropdown-item" href="{{ route('schedule.edit',$schedule) }}">Edit</a>
+                                                <form action="{{ route('schedule.destroy',$schedule) }}" method="POST" onclick="return confirm('are You sure you want to delete this schedule?')">
                                                     @csrf
                                                     @method("DELETE")
                                                     <button class="dropdown-item" type="submit">Delete</button>

@@ -6,25 +6,27 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
 
         <!-- Start datatable css  -->
-    <link rel="stylesheet" href="{{ asset("assets/Datatables Assets/css/jqueryDatatables.css") }}">
-    <link rel="stylesheet" href="{{ asset("assets/Datatables Assets/css/juqeryDatatblesb4.css") }}">
-    <link rel="stylesheet" href="{{ asset("assets/Datatables Assets/css/DatatablesResponsive.bootstrap.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("assets/Datatables Assets/css/responsive.jqueryui.min.css") }}">
+        {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> --}}
+        <link rel="stylesheet" href="{{ asset("assets/Datatables_Assets/css/datatables.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets/Datatables_Assets/css/responsive.jqueryui.min.css") }}">
+
     <link rel="stylesheet" href="{{ asset("assets/css/jqueryui.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets/css/flatTimepicker.css") }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/metisMenu.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/slicknav.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/amcharPlugin.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('assets/css/typography.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/default-css.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    @yield('css')
     <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
@@ -51,20 +53,39 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                                <a href="{{ route('dashboard') }}" aria-expanded="true"><i
+                                <a href="{{ route('dashboard') }}"><i
                                         class="ti-dashboard"></i><span>dashboard</span></a>
                             </li>
 
 
                             <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
-                                <a href="{{ route('department.index') }}" aria-expanded="true"><i
+                                <a href="{{ route('department.index') }}"><i
                                         class="fa fa-building"></i><span>Departments</span></a>
                             </li>
 
-                            
-                            <li class="{{ request()->routeIs('employee.index') ? 'active' : '' }}">
-                                <a href="{{ route('employee.index') }}" aria-expanded="true"><i
+
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i
                                         class="fa fa-users"></i><span>Employees</span></a>
+                                <ul class="collapse">
+                                    <li class="{{ request()->routeIs('employee.index') ? 'active' : '' }}"><a href="{{ route('employee.index') }}"><i
+                                        class="fa fa-building"></i><span>Employee List</span></a></li>
+
+                                    <li class="{{ request()->routeIs('overtime.index') ? 'active' : '' }}"><a href="{{ route('overtime.index') }}"><i
+                                        class="fa fa-clock-o"></i><span>OverTime</span></a></li>
+                                    <li><a href="index3.html">Settings</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li class="{{ request()->routeIs('schedule.index') ? 'active' : '' }}">
+                                <a href="{{ route('schedule.index') }}"><i
+                                        class="fa fa-hourglass-half"></i><span>Schedule</span></a>
+                            </li>
+
+                            <li class="{{ request()->routeIs('schedule.index') ? 'active' : '' }}">
+                                <a href="{{ route('schedule.index') }}"><i
+                                        class="fa fa-hourglass-half"></i><span>Position</span></a>
                             </li>
 
                             <li class="">
@@ -76,6 +97,7 @@
                                     <li><a href="index3.html">Settings</a></li>
                                 </ul>
                             </li>
+
                         </ul>
                     </nav>
                 </div>
@@ -116,7 +138,7 @@
         <!-- footer area start-->
         <footer>
             <div class="footer-area">
-                <p>© Copyright 2018. All right reserved.by Sheikh </p>
+                <p>© Copyright 2024. All right reserved.by Sheikh </p>
             </div>
         </footer>
         <!-- footer area end-->
@@ -125,7 +147,7 @@
     <!-- jquery latest version -->
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/jqueryui.js') }}"></script>
-
+ 
    
     <!-- Start datatable js -->
 
@@ -136,20 +158,20 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>  --}}
 
-     <script src="{{ asset("assets/Datatables Assets/js/jquery.dataTables.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/jquery.dataTables.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/dataTables.bootstrap4.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/dataTables.responsive.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/responsive.bootstrap.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/jquery.dataTables.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/jquery.dataTables.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/dataTables.bootstrap4.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/dataTables.responsive.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/responsive.bootstrap.min.js") }}"></script>
  
  
      <!-- Datatables Buttons Cdn -->
-     <script src="{{ asset("assets/Datatables Assets/js/dataTables.buttons.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/jszip.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/buttons.html5.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/buttons.print.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/pdfmake.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables Assets/js/vfs_fonts.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/dataTables.buttons.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/jszip.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/buttons.html5.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/buttons.print.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/pdfmake.min.js") }}"></script>
+     <script src="{{ asset("assets/Datatables_Assets/js/vfs_fonts.js") }}"></script>
 
 
     <!-- bootstrap 4 js -->
@@ -160,19 +182,11 @@
     <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
 
-    <!-- start chart js -->
-    <script src="{{ asset('assets/js/chart.min.js') }}"></script>
-    <!-- start highcharts js -->
-    <script src="{{ asset('assets/js/highChart.js') }}"></script>
-    <!-- start zingchart js -->
-    <script src="{{ asset('assets/js/zingChart.js') }}"></script>
-    <!-- all line chart activation -->
-    <script src="{{ asset('assets/js/line-chart.js') }}"></script>
-    <!-- all pie chart -->
-    <script src="{{ asset('assets/js/pie-chart.js') }}"></script>
-    <!-- others plugins -->
+   
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset("assets/js/flatTimepicker.js") }}"></script>
+    @yield('js')
 </body>
 
 </html>

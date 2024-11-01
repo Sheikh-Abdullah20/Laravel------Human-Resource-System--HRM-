@@ -93,28 +93,91 @@
         });
     }, false);
 
+    /*================================
+    datatable active
+    ==================================*/
+    if ($('#table').length) {
+        $('#table').DataTable({
+            responsive: true,
+             dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'csv',
+                    text: '<i class="fa fa-file-excel-o"></i>',
+                    title: 'Table Data',
+                    className: 'btn btn-sm font-sm btn-success',
+                    exportOptions: {
+                     columns: ':visible:not(.no-print)'
+                    }
+                }, {
+                    extend: 'pdf',
+                    text: '<i class="fa fa-file-pdf-o"></i>',
+                    title: 'Table Data',
+                    className: 'btn btn-sm font-sm btn-danger',
+                    exportOptions: {
+                        columns: ':visible:not(.no-print)'
+                    }
+                }, {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i>',
+                    title: 'Table Data',
+                    className: 'btn btn-sm font-sm btn-primary',
+                    exportOptions: {
+                       columns: ':visible:not(.no-print)'
+                    }
+                },
+            ],initComplete: function() {
+                $("#table_filter").appendTo(".dt-buttons");
+            }
+
+           
+        });
+    }
+  
+
+      /*================================
+    Flat TimePicker
+    ==================================*/
+
+    function initializeTimePickers() {
+        flatpickr("#timepicker", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            minuteIncrement: 15
+        });
+        flatpickr("#timepicker2", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            minuteIncrement: 15
+        });
+    }
+    $(document).ready(function(){
+        initializeTimePickers();
+    });
+
 
      /*================================
-    jquery DatePicker
+    Flat DatePicker
     ==================================*/
     // Employees
     $(document).ready(function() {
-        $('#employee_dob').datepicker({
-            dateFormat: 'mm/dd/yy', 
-            changeMonth: true,      
-            changeYear: true,       
-            yearRange: "1900:+10",
-            showAnim: 'slideDown'  
+        flatpickr("#employee_dob", {
+            enableTime: false,
+            noCalendar: false,   
+            dateFormat: "Y-m-d",  
         });
     });
 
     $(document).ready(function() {
-        $('#hiring_date').datepicker({
-            dateFormat: 'mm/dd/yy', 
-            changeMonth: true,      
-            changeYear: true,    
-            yearRange: "1900:+10",   
-            showAnim: 'slideDown'  
+        flatpickr("#hiring_date", {
+            enableTime: false,
+            noCalendar: false,  
+            dateFormat: "Y-m-d", 
+            
         });
     });
 
@@ -122,84 +185,396 @@
     /*================================
     datatable active
     ==================================*/
-    if ($('#Department_table').length) {
-        $('#Department_table').DataTable({
-            responsive: true,
-             dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'csv',
-                    text: '<i class="fa fa-file-excel-o"></i>',
-                    title: 'Departments',
-                    className: 'btn btn-sm font-sm btn-success',
-                    exportOptions: {
-                     columns: ':visible:not(.no-print)'
-                    }
-                }, {
-                    extend: 'pdf',
-                    text: '<i class="fa fa-file-pdf-o"></i>',
-                    title: 'Departments',
-                    className: 'btn btn-sm font-sm btn-danger',
-                    exportOptions: {
-                        columns: ':visible:not(.no-print)'
-                    }
-                }, {
-                    extend: 'print',
-                    text: '<i class="fa fa-print"></i>',
-                    title: 'Departments',
-                    className: 'btn btn-sm font-sm btn-primary',
-                    exportOptions: {
-                       columns: ':visible:not(.no-print)'
-                    }
-                },
-            ],initComplete: function() {
-                $("#Department_table_filter").appendTo(".dt-buttons");
+ 
+
+    $(document).ready(function() {
+        if ($('#Department_table').length) {
+            $('#Department_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Departments',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Departments',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Departments',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "dep_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#Department_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+    
+        if ($('#Employee_table').length) {
+            $('#Employee_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Employees',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Employees',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Employees',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "emp_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#Employee_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+    
+        if ($('#overtime_table').length) {
+            $('#overtime_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'OverTime',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'OverTime',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'OverTime',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "overtime_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#overtime_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+    
+    
+        if ($('#schedule_table').length) {
+            $('#schedule_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Schedule',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Schedule',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Schedule',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "schedule_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#schedule_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+
+
+
+    });
+    
+
+     /*================================
+    Delete By Deletion
+    ==================================*/
+
+    $(document).ready(function() {
+        // Departments
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#dep_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any department");
+            }else{
+                const conf = confirm("Are you sure you want to delete these Departments?");
+                if(conf){
+                    $.ajax({
+                        url: 'department/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { department_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("Departments deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete departments");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete departments");
+                        }
+                    });
+                }
             }
 
-           
-        });
-    }
 
-    if ($('#Employee_table').length) {
-        $('#Employee_table').DataTable({
-            responsive: true,
-             dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'csv',
-                    text: '<i class="fa fa-file-excel-o"></i>',
-                    title: 'Employees',
-                    className: 'btn btn-sm font-sm btn-success',
-                    exportOptions: {
-                     columns: ':visible:not(.no-print)'
-                    }
-                }, {
-                    extend: 'pdf',
-                    text: '<i class="fa fa-file-pdf-o"></i>',
-                    title: 'Employees',
-                    className: 'btn btn-sm font-sm btn-danger',
-                    exportOptions: {
-                        columns: ':visible:not(.no-print)'
-                    }
-                }, {
-                    extend: 'print',
-                    text: '<i class="fa fa-print"></i>',
-                    title: 'Employees',
-                    className: 'btn btn-sm font-sm btn-primary',
-                    exportOptions: {
-                       columns: ':visible:not(.no-print)'
-                    }
-                },
-            ],initComplete: function() {
-                $("#Employee_table_filter").appendTo(".dt-buttons");
+        });
+
+
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#emp_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any Employee");
+            }else{
+                const conf = confirm("Are you sure you want to delete these Employees?");
+                if(conf){
+                    $.ajax({
+                        url: 'employee/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { employee_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("Employees deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete Employees");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete Employees");
+                        }
+                    });
+                }
             }
 
-           
+
         });
-    }
+
+
+
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#overtime_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any Overtime");
+            }else{
+                const conf = confirm("Are you sure you want to delete these Overtimes?");
+                if(conf){
+                    $.ajax({
+                        url: 'overtime/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { overtime_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("Overtimes deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete Overtimes");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete Overtimes");
+                        }
+                    });
+                }
+            }
+
+
+        });
+
+
+
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#schedule_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any schedule");
+            }else{
+                const conf = confirm("Are you sure you want to delete these schedules?");
+                if(conf){
+                    $.ajax({
+                        url: 'schedule/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { overtime_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("schedules deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete schedules");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete schedules");
+                        }
+                    });
+                }
+            }
+
+
+        });
+
+
+    });
 
 
    
+
 
 
     /*================================

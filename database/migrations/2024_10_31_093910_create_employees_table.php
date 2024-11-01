@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("date_of_hiring");
             $table->foreignId("department_id")->constrained("departments")->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('employee_position');
+            $table->integer("employee_schedule");
             $table->timestamps();
         });
     }

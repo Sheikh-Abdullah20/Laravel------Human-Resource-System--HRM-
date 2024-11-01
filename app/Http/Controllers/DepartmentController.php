@@ -63,6 +63,23 @@ class DepartmentController extends Controller
         }
     }
 
+    public function deletebyselection(Request $request){
+
+        $ids = $request->input('department_ids');
+        $delete = Department::whereIn('id',$ids)->delete();
+        if($delete){
+            return response()->json([
+                'status' => true,
+                'message' => "Selected Department has been deleted"
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => "Failed to delete selected department"
+            ]);
+        }
+    }
+
     
     public function destroy(string $id)
     {
