@@ -435,6 +435,62 @@
             });
         }
 
+
+
+
+        
+        if ($('#cash_advance_table').length) {
+            $('#cash_advance_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Cash Advance',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Cash Advance',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Cash Advance',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "cash_advance_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#cash_advance_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+
+
+
+
         if ($('#Employee_Schedule_table').length) {
             $('#Employee_Schedule_table').DataTable({
                 responsive: true,
@@ -694,6 +750,48 @@
                         },
                         error: function(xhr, status, error) {
                             alert("Failed to delete positions");
+                        }
+                    });
+                }
+            }
+
+
+        });
+
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#cash_advance_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any Cash Advance");
+            }else{
+                const conf = confirm("Are you sure you want to delete these Cash Advances?");
+                if(conf){
+                    $.ajax({
+                        url: 'cashAdvance/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { cashAdvance_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("Advances deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete Advances");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete Advances");
                         }
                     });
                 }

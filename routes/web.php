@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CashAdvanceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -44,6 +46,10 @@ Route::resource("position",PositionController::class)->except("show");
 Route::post("position/deletebyselection",[PositionController::class, 'deletebyselection']);
 
 Route::resource("employeeschedule",EmployeeScheduleController::class)->except(["show","destroy","create","store"]);
+
+
+Route::resource('cashAdvance',CashAdvanceController::class)->except("show");
+Route::post("cashAdvance/deletebyselection",[CashAdvanceController::class, 'deletebyselection']);
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

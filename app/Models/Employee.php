@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CashAdvance;
 use App\Models\Department;
 use App\Models\OverTime;
 use App\Models\Schedule;
@@ -32,5 +33,9 @@ class Employee extends Model
         return $this->belongsTo(Position::class,"employee_position", 'id');
     }
     
+    public function cashAdvances()
+    {
+        return $this->hasMany(CashAdvance::class, 'employee_id', 'id');
+    }
 
 }

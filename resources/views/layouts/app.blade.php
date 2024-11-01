@@ -9,9 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
 
-        <!-- Start datatable css  -->
-        {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> --}}
-        <link rel="stylesheet" href="{{ asset("assets/Datatables_Assets/css/datatables.min.css") }}">
+    <!-- Start datatable css  -->
+    {{--
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> --}}
+    <link rel="stylesheet" href="{{ asset("assets/Datatables_Assets/css/datatables.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/Datatables_Assets/css/responsive.jqueryui.min.css") }}">
 
     <link rel="stylesheet" href="{{ asset("assets/css/jqueryui.css") }}">
@@ -45,7 +46,9 @@
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
-                    <a href="{{ route('dashboard') }}"> <x-application-logo/> </a>
+                    <a href="{{ route('dashboard') }}">
+                        <x-application-logo />
+                    </a>
                 </div>
             </div>
             <div class="main-menu">
@@ -68,14 +71,23 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i
                                         class="fa fa-users"></i><span>Employees</span></a>
                                 <ul class="collapse">
-                                    <li class="{{ request()->routeIs('employee.index') ? 'active' : '' }}"><a href="{{ route('employee.index') }}"><i
-                                        class="fa fa-building"></i><span>Employee List</span></a></li>
+                                    <li class="{{ request()->routeIs('employee.index') ? 'active' : '' }}"><a
+                                            href="{{ route('employee.index') }}"><i
+                                                class="fa fa-building"></i><span>Employee List</span></a></li>
 
-                                    <li class="{{ request()->routeIs('overtime.index') ? 'active' : '' }}"><a href="{{ route('overtime.index') }}"><i
-                                        class="fa fa-clock-o"></i><span>OverTime</span></a></li>
+                                    <li class="{{ request()->routeIs('overtime.index') ? 'active' : '' }}"><a
+                                            href="{{ route('overtime.index') }}"><i
+                                                class="fa fa-clock-o"></i><span>OverTime</span></a></li>
 
-                                        <li class="{{ request()->routeIs('employeeschedule.index') ? 'active' : '' }}"><a href="{{ route('employeeschedule.index') }}"><i
-                                            class="fa fa-clock-o"></i><span>Employee Schedule</span></a></li>
+
+                                    <li class="{{ request()->routeIs('cashAdvance.index') ? 'active' : '' }}"><a
+                                            href="{{ route('cashAdvance.index') }}"><i
+                                                class="fa fa-credit-card"></i><span>Cash Advance</span></a></li>
+
+
+                                    <li class="{{ request()->routeIs('employeeschedule.index') ? 'active' : '' }}"><a
+                                            href="{{ route('employeeschedule.index') }}"><i
+                                                class="fa fa-hourglass-half"></i><span>Employee Schedule</span></a></li>
                                 </ul>
                             </li>
 
@@ -118,7 +130,7 @@
                             <span></span>
                             <span></span>
                         </div>
-                     
+
                     </div>
                     <!-- profile info & task notification -->
                     <div class="col-md-6 col-sm-4 clearfix ">
@@ -126,7 +138,8 @@
                             <li id="full-view"><i class="ti-fullscreen text-secondary"></i></li>
                             <li id="full-view-exit"><i class="ti-zoom-out text-secondary"></i></li>
                             <li class="settings-btn">
-                                <a href="#" class="text-secondary"><i class="ti-settings" style="font-size: 26px"></i></a>
+                                <a href="#" class="text-secondary"><i class="ti-settings"
+                                        style="font-size: 26px"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -145,35 +158,35 @@
         </footer>
         <!-- footer area end-->
     </div>
-   
+
     <!-- jquery latest version -->
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/jqueryui.js') }}"></script>
- 
-   
+
+
     <!-- Start datatable js -->
 
-{{-- 
+    {{--
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>  --}}
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script> --}}
 
-     <script src="{{ asset("assets/Datatables_Assets/js/jquery.dataTables.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/jquery.dataTables.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/dataTables.bootstrap4.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/dataTables.responsive.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/responsive.bootstrap.min.js") }}"></script>
- 
- 
-     <!-- Datatables Buttons Cdn -->
-     <script src="{{ asset("assets/Datatables_Assets/js/dataTables.buttons.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/jszip.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/buttons.html5.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/buttons.print.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/pdfmake.min.js") }}"></script>
-     <script src="{{ asset("assets/Datatables_Assets/js/vfs_fonts.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/jquery.dataTables.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/jquery.dataTables.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/dataTables.bootstrap4.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/dataTables.responsive.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/responsive.bootstrap.min.js") }}"></script>
+
+
+    <!-- Datatables Buttons Cdn -->
+    <script src="{{ asset("assets/Datatables_Assets/js/dataTables.buttons.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/jszip.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/buttons.html5.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("assets/Datatables_Assets/js/vfs_fonts.js") }}"></script>
 
 
     <!-- bootstrap 4 js -->
@@ -184,7 +197,7 @@
     <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
 
-   
+
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset("assets/js/flatTimepicker.js") }}"></script>
