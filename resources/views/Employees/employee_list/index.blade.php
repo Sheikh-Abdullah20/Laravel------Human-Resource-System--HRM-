@@ -23,6 +23,7 @@
                                         <th>
                                             <input type="checkbox" class="form-control" id="select_all">   
                                         </th>
+                                        <th>Employee ID</th>
                                         <th>Employee Name</th>
                                         <th>Father Name</th>
                                         <th>Employee DOB</th>
@@ -42,14 +43,15 @@
                                         <td>
                                             <input type="checkbox" class="form-control each_select" value="{{ $employee->id }}">  
                                         </td>
+                                        <td>{{ $employee->employee_id }}</td>
                                         <td>{{ $employee->employee_name }}</td>
                                         <td>{{ $employee->father_name }}</td>
                                         <td>{{ $employee->employee_dob }}</td>
                                         <td>{{ $employee->date_of_hiring }}</td>
                                         <td>{{ $employee->department->department_name }}</td>
                                         <td>{{ $employee->position->position_name ?? "No Position Assigned"}}</td>
-                                        <td>{{ $employee->schedule->name ?? "No Schedule Assigned"}}</td>
-                                        <td>{{ $employee->created_at->format("Y-m-d") }}</td>
+                                        <td>{{ $employee->schedule->formatted_times['checkin'] . " - ". $employee->schedule->formatted_times['checkout'] ?? "No Schedule Assigned"}}</td>
+                                        <td>{{ $employee->created_at->format("Y-M-d") }}</td>
                                         <td>
                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                 Action

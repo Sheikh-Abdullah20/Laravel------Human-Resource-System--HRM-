@@ -435,6 +435,45 @@
             });
         }
 
+        if ($('#Employee_Schedule_table').length) {
+            $('#Employee_Schedule_table').DataTable({
+                responsive: true,
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Employee Schedule',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Employee Schedule',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Employee Schedule',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                   
+                ],initComplete: function() {
+                    $("#Employee_Schedule_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+
 
 
     });

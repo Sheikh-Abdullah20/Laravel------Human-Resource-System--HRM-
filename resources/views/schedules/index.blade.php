@@ -39,9 +39,9 @@
                                             <input type="checkbox" class="form-control each_select" value="{{ $schedule->id }}">  
                                         </td>
                                         <td>{{ $schedule->name }}</td>
-                                        <td>{{ $schedule->checkin}}</td>
-                                        <td>{{ $schedule->checkout}}</td>
-                                        <td>{{ $schedule->created_at->format("Y-m-d") }}</td>
+                                        <td>{{ $schedule->formatted_times['checkin']}}</td>
+                                        <td>{{ $schedule->formatted_times['checkout']}}</td>
+                                        <td>{{ $schedule->created_at->format("Y-M-d") }}</td>
                                         <td>
                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                 Action

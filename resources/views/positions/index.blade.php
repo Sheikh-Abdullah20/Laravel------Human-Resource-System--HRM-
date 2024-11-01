@@ -39,7 +39,7 @@
                                         </td>
                                         <td>{{ $position->position_name }}</td>
                                         <td>{{ $position->rate_per_hour}}</td>
-                                        <td>{{ $position->created_at->format("Y-m-d") }}</td>
+                                        <td>{{ $position->created_at->format("Y-M-d") }}</td>
                                         <td>
                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                 Action

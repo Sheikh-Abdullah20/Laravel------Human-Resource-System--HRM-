@@ -87,7 +87,8 @@
                         <select class="custom-select" type="text" name="employee_schedule" id="employee_schedule" style="cursor: pointer;">
                             <option value="" hidden>Select Schedule </option>
                             @foreach($schedules as $schedule)
-                                <option value="{{ $schedule->id }}" {{ $schedule->id  == $employee->employee_schedule ? 'selected' : '' }}  >{{ $schedule->name }}</option>
+                               
+                                <option value="{{ $schedule->id }}" {{ $schedule->id  == $employee->employee_schedule ? 'selected' : '' }}  >{{ $schedule->name . " "}}   {{ $schedule->checkin . " - ". $schedule->checkout }}</option>
                             @endforeach
                         </select>
                         @error('employee_schedule')  

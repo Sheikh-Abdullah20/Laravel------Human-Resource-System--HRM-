@@ -73,7 +73,9 @@
 
                                     <li class="{{ request()->routeIs('overtime.index') ? 'active' : '' }}"><a href="{{ route('overtime.index') }}"><i
                                         class="fa fa-clock-o"></i><span>OverTime</span></a></li>
-                                    <li><a href="index3.html">Settings</a></li>
+
+                                        <li class="{{ request()->routeIs('employeeschedule.index') ? 'active' : '' }}"><a href="{{ route('employeeschedule.index') }}"><i
+                                            class="fa fa-clock-o"></i><span>Employee Schedule</span></a></li>
                                 </ul>
                             </li>
 

@@ -23,6 +23,7 @@
                                         <th>
                                             <input type="checkbox" class="form-control" id="select_all"> 
                                         </th>
+                                        <th>Employee ID</th>
                                         <th>Employee Name</th>
                                         <th>hourly_rate</th>
                                         <th>total_overtime_hour</th>
@@ -39,11 +40,12 @@
                                         <td>
                                             <input type="checkbox" class="form-control each_select" value="{{ $overtime->id }}">  
                                         </td>
+                                        <td>{{ $overtime->overtime_employee->employee_id }}</td>
                                         <td>{{ $overtime->overtime_employee->employee_name }}</td>
                                         <td>{{ $overtime->hourly_rate}}</td>
                                         <td>{{ $overtime->total_overtime_hours}}</td>
                                         <td>{{ $overtime->total_overtime_pay}}</td>
-                                        <td>{{ $overtime->created_at->format("Y-m-d") }}</td>
+                                        <td>{{ $overtime->created_at->format("Y-M-d") }}</td>
                                         <td>
                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                 Action

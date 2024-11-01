@@ -38,9 +38,10 @@ class EmployeeController extends Controller
             'department_id' => 'required|numeric',
             'employee_position' => 'required|numeric',
             'employee_schedule' => 'required|numeric',
-
         ]);
 
+        $employeeId = rand(000000000,99999999);
+        $validated_req['employee_id'] = $employeeId;
         $create = Employee::create($validated_req);
         if($create){
             Toastr()->success("Employee Created Successfully");
@@ -76,6 +77,9 @@ class EmployeeController extends Controller
             'employee_schedule' => 'required|numeric',
 
         ]);
+
+        $employeeId = rand(000000000,99999999);
+        $validated_req['employee_id'] = $employeeId;
 
         $employee = Employee::find($id);
         if(!empty($employee)){
