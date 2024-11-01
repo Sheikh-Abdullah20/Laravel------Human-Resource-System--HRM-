@@ -20,7 +20,7 @@
 
                     <div class="form-group">
                         <label for="employee_name" class="col-form-label">Employee Name</label>
-                        <input class="form-control" type="text" name="employee_name" id="employee_name">
+                        <input class="form-control" type="text" name="employee_name" id="employee_name" value="{{ old('employee_name') }}">
                         @error('employee_name')  
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <label for="father_name" class="col-form-label">Father Name</label>
-                        <input class="form-control" type="text" name="father_name" id="father_name">
+                        <input class="form-control" type="text" name="father_name" id="father_name" value="{{ old('father_name') }}">
                         @error('father_name')  
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -38,7 +38,7 @@
 
                     <div class="form-group">
                         <label for="employee_dob" class="col-form-label">Employee Date of Birth</label>
-                        <input class="form-control" type="text" name="employee_dob" id="employee_dob">
+                        <input class="form-control" type="text" name="employee_dob" id="employee_dob" value="{{ old('employee_dob') }}">
                         @error('employee_dob')  
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <label for="hiring_date" class="col-form-label">Date Of Hiring</label>
-                        <input class="form-control" type="text" name="date_of_hiring" id="hiring_date">
+                        <input class="form-control" type="text" name="date_of_hiring" id="hiring_date" value="{{ old('hiring_date') }}">
                         @error('date_of_hiring')  
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -69,7 +69,13 @@
 
                     <div class="form-group">
                         <label for="employee_position" class="col-form-label">Position</label>
-                        <input class="form-control" type="text" name="employee_position" id="employee_position">
+                        <select class="custom-select" type="text" name="employee_position" id="employee_position">
+                            <option value="" hidden>Select Position</option>
+
+                            @foreach ($positions as $position )
+                                <option value="{{ $position->id }}">{{ $position->position_name }}</option>
+                            @endforeach
+                        </select>
                         @error('employee_position')  
                         <small class="text-danger">{{ $message }}</small>
                         @enderror

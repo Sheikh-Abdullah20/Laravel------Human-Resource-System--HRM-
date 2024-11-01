@@ -386,6 +386,56 @@
         }
 
 
+        if ($('#position_table').length) {
+            $('#position_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Position',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Position',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Position',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "position_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#position_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+
+
 
     });
     
@@ -568,6 +618,56 @@
 
 
         });
+
+
+
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#position_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any position");
+            }else{
+                const conf = confirm("Are you sure you want to delete these positions?");
+                if(conf){
+                    $.ajax({
+                        url: 'position/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { position_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("positions deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete positions");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete positions");
+                        }
+                    });
+                }
+            }
+
+
+        });
+
+
+
+
+        
+
 
 
     });

@@ -47,7 +47,7 @@
                                         <td>{{ $employee->employee_dob }}</td>
                                         <td>{{ $employee->date_of_hiring }}</td>
                                         <td>{{ $employee->department->department_name }}</td>
-                                        <td>{{ $employee->employee_position}}</td>
+                                        <td>{{ $employee->position->position_name ?? "No Position Assigned"}}</td>
                                         <td>{{ $employee->schedule->name ?? "No Schedule Assigned"}}</td>
                                         <td>{{ $employee->created_at->format("Y-m-d") }}</td>
                                         <td>

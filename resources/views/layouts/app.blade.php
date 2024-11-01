@@ -83,8 +83,8 @@
                                         class="fa fa-hourglass-half"></i><span>Schedule</span></a>
                             </li>
 
-                            <li class="{{ request()->routeIs('schedule.index') ? 'active' : '' }}">
-                                <a href="{{ route('schedule.index') }}"><i
+                            <li class="{{ request()->routeIs('position.index') ? 'active' : '' }}">
+                                <a href="{{ route('position.index') }}"><i
                                         class="fa fa-hourglass-half"></i><span>Position</span></a>
                             </li>
 

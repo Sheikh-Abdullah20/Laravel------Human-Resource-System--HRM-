@@ -26,6 +26,11 @@ class Employee extends Model
     public function schedule() {
         return $this->belongsTo(Schedule::class, 'employee_schedule', 'id');
     }
+
+
+    public function position(){
+        return $this->belongsTo(Position::class,"employee_position", 'id');
+    }
     
 
 }

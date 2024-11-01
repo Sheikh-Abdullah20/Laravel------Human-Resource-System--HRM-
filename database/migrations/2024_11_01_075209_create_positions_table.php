@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
+            $table->string("position_name");
+            $table->decimal("rate_per_hour",15,2);
             $table->timestamps();
         });
     }

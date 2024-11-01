@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\Position;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -21,7 +23,8 @@ class EmployeeController extends Controller
     {
         $departments = Department::all();
         $schedules = Schedule::all();
-        return view("Employees.employee_list.create",compact("departments","schedules"));
+        $positions = Position::all();
+        return view("Employees.employee_list.create",compact("departments","schedules","positions"));
     }
 
     
@@ -33,7 +36,7 @@ class EmployeeController extends Controller
             'employee_dob' => 'required|date',
             'date_of_hiring' => 'required|date',
             'department_id' => 'required|numeric',
-            'employee_position' => 'required|min:3',
+            'employee_position' => 'required|numeric',
             'employee_schedule' => 'required|numeric',
 
         ]);
@@ -56,7 +59,8 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $departments = Department::all();
         $schedules = Schedule::all();
-        return view("Employees.employee_list.edit",compact('employee',"departments","schedules"));
+        $positions = Position::all();
+        return view("Employees.employee_list.edit",compact('employee',"departments","schedules","positions"));
     }
 
    
@@ -68,9 +72,8 @@ class EmployeeController extends Controller
             'employee_dob' => 'required|date',
             'date_of_hiring' => 'required|date',
             'department_id' => 'required|numeric',
-            'employee_position' => 'required|min:3',
+            'employee_position' => 'required|numeric',
             'employee_schedule' => 'required|numeric',
-
 
         ]);
 

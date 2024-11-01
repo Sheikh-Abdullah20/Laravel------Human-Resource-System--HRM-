@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section("title","OverTime")
+@section("title","Position")
 
 @section('content')
 
@@ -11,46 +11,42 @@
             <div class="card">
                 <div class="card-body">
                    <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h2 class="display-5">OverTimes</h2>
-                    <a href="{{ route('overtime.create') }}" class="btn btn-outline-primary">Create OverTime</a>
+                    <h2 class="display-5">Positions</h2>
+                    <a href="{{ route('position.create') }}" class="btn btn-outline-primary">Create Position</a>
                    </div>
                     <div class="single-table mt-5">
                         <div class="data-tables">
-                            <table id="overtime_table" class="text-center">
+                            <table id="position_table" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>
                                         <th></th>
                                         <th>
                                             <input type="checkbox" class="form-control" id="select_all"> 
                                         </th>
-                                        <th>Employee Name</th>
+                                        <th>Position Title</th>
                                         <th>hourly_rate</th>
-                                        <th>total_overtime_hour</th>
-                                        <th>total_overtime_pay</th>
                                         <th>Date</th>
                                         <th class="no-print">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($overtimes as $overtime)
+                                    @foreach($positions as $position)
 
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <input type="checkbox" class="form-control each_select" value="{{ $overtime->id }}">  
+                                            <input type="checkbox" class="form-control each_select" value="{{ $position->id }}">  
                                         </td>
-                                        <td>{{ $overtime->overtime_employee->employee_name }}</td>
-                                        <td>{{ $overtime->hourly_rate}}</td>
-                                        <td>{{ $overtime->total_overtime_hours}}</td>
-                                        <td>{{ $overtime->total_overtime_pay}}</td>
-                                        <td>{{ $overtime->created_at->format("Y-m-d") }}</td>
+                                        <td>{{ $position->position_name }}</td>
+                                        <td>{{ $position->rate_per_hour}}</td>
+                                        <td>{{ $position->created_at->format("Y-m-d") }}</td>
                                         <td>
                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform:translate3d(15px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a class="dropdown-item" href="{{ route('overtime.edit',$overtime) }}">Edit</a>
-                                                <form action="{{ route('overtime.destroy',$overtime) }}" method="POST" onclick="return confirm('are You sure you want to delete this overtime?')">
+                                                <a class="dropdown-item" href="{{ route('position.edit',$position) }}">Edit</a>
+                                                <form action="{{ route('position.destroy',$position) }}" method="POST" onclick="return confirm('are You sure you want to delete this position?')">
                                                     @csrf
                                                     @method("DELETE")
                                                     <button class="dropdown-item" type="submit">Delete</button>

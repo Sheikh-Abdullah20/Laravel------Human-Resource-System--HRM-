@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-body">
                    <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h2 class="display-5">Schedule</h2>
+                    <h2 class="display-5">Schedules</h2>
                     <a href="{{ route('schedule.create') }}" class="btn btn-outline-primary">Create Schedule</a>
                    </div>
                     <div class="single-table mt-5">

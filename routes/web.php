@@ -4,9 +4,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OverTimeController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -35,6 +37,9 @@ Route::post("overtime/deletebyselection",[OverTimeController::class, 'deletebyse
 Route::resource('schedule',ScheduleController::class)->except("show");
 Route::post("schedule/deletebyselection",[ScheduleController::class, 'deletebyselection']);
 
+
+Route::resource("position",PositionController::class)->except("show");
+Route::post("position/deletebyselection",[PositionController::class, 'deletebyselection']);
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

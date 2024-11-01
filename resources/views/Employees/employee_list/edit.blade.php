@@ -69,7 +69,13 @@
 
                     <div class="form-group">
                         <label for="employee_position" class="col-form-label">Position</label>
-                        <input class="form-control" type="text" name="employee_position" id="employee_position" value="{{ $employee->employee_position }}">
+                        <select class="custom-select" type="text" name="employee_position" id="employee_position">
+                            <option value="" hidden>Select Position</option>
+
+                            @foreach ($positions as $position )
+                                <option value="{{ $position->id }}" {{ $position->id == $employee->employee_position ? "selected" : '' }}>{{ $position->position_name }}</option>
+                            @endforeach
+                        </select>
                         @error('employee_position')  
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
