@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal("payment_amount",15,2)->default(0);
             $table->decimal("deduction_amount",15,2)->default(0);
             $table->decimal("closing_balance",15,2)->default(0);
+            $table->string("loan_status");
             $table->timestamps();
         });
     }

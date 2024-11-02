@@ -42,7 +42,7 @@
 
 
                     <div class="form-group">
-                        <label for="employee_name" class="col-form-label">Employee</label>
+                        <label for="employee_name" class="col-form-label">Payment Status</label>
                         <select class="custom-select" type="text" name="payment_status" id="payment_status">
                             <option value="" hidden>Select Payment Status </option>
                             <option value="Pending" {{ $cashAdvance->payment_status == "Pending" ? "selected" : '' }} >pending</option>

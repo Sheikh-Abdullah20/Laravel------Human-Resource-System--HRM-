@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logo/2121935.png') }}">
 
     <!-- Start datatable css  -->
     {{--
@@ -84,6 +84,9 @@
                                             href="{{ route('cashAdvance.index') }}"><i
                                                 class="fa fa-credit-card"></i><span>Cash Advance</span></a></li>
 
+                                    <li class="{{ request()->routeIs('loan.index') ? 'active' : '' }}"><a
+                                        href="{{ route('loan.index') }}"><i
+                                            class="fa fa-usd"></i><span>Loan</span></a></li>
 
                                     <li class="{{ request()->routeIs('employeeschedule.index') ? 'active' : '' }}"><a
                                             href="{{ route('employeeschedule.index') }}"><i
@@ -99,7 +102,12 @@
 
                             <li class="{{ request()->routeIs('position.index') ? 'active' : '' }}">
                                 <a href="{{ route('position.index') }}"><i
-                                        class="fa fa-hourglass-half"></i><span>Position</span></a>
+                                        class="fa fa-key"></i><span>Position</span></a>
+                            </li>
+
+                            <li class="{{ request()->routeIs('jobNature.index') ? 'active' : '' }}">
+                                <a href="{{ route('jobNature.index') }}"><i
+                                        class="fa fa-briefcase"></i><span>Job Nature</span></a>
                             </li>
 
                             <li class="">

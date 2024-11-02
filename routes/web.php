@@ -5,11 +5,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeeScheduleController;
+use App\Http\Controllers\JobNatureController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\OverTimeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -50,6 +54,14 @@ Route::resource("employeeschedule",EmployeeScheduleController::class)->except(["
 
 Route::resource('cashAdvance',CashAdvanceController::class)->except("show");
 Route::post("cashAdvance/deletebyselection",[CashAdvanceController::class, 'deletebyselection']);
+
+
+Route::resource('loan',LoanController::class)->except("show");
+Route::post("loan/deletebyselection",[LoanController::class, 'deletebyselection']);
+
+
+Route::resource('jobNature',JobNatureController::class)->except("show");
+Route::post("jobNature/deletebyselection",[JobNatureController::class, 'deletebyselection']);
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

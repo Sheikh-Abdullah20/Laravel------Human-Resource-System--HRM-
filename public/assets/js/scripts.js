@@ -490,6 +490,107 @@
 
 
 
+        if ($('#loan_table').length) {
+            $('#loan_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Loan',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Loan',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Loan',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "loan_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#loan_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+        if ($('#jobNature_table').length) {
+            $('#jobNature_table').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [0,1] }
+                ],
+                 dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'csv',
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        title: 'Job Nature',
+                        className: 'btn btn-sm font-sm btn-success',
+                        exportOptions: {
+                         columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'pdf',
+                        text: '<i class="fa fa-file-pdf-o"></i>',
+                        title: 'Job Nature',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        exportOptions: {
+                            columns: ':visible:not(.no-print)'
+                        }
+                    }, {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i>',
+                        title: 'Job Nature',
+                        className: 'btn btn-sm font-sm btn-primary',
+                        exportOptions: {
+                           columns: ':visible:not(.no-print)'
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-trash-o"></i>',
+                        title: 'Delete',
+                        className: 'btn btn-sm font-sm btn-danger',
+                        attr : {
+                            id: "jobNature_delete-btn"
+                        }
+                    },
+                ],initComplete: function() {
+                    $("#jobNature_table_filter").appendTo(".dt-buttons");
+                }
+    
+               
+            });
+        }
+
+
+
+
+
 
         if ($('#Employee_Schedule_table').length) {
             $('#Employee_Schedule_table').DataTable({
@@ -800,6 +901,93 @@
 
         });
 
+
+
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#loan_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any Loan");
+            }else{
+                const conf = confirm("Are you sure you want to delete these Loans?");
+                if(conf){
+                    $.ajax({
+                        url: 'loan/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { loan_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("Loans deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete Loans");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete Loans");
+                        }
+                    });
+                }
+            }
+
+
+        });
+
+
+
+        $("#select_all").on("change", function() {
+            const isChecked = $(this).is(":checked"); 
+            $(".each_select").prop("checked", isChecked);
+        });
+
+        $("#jobNature_delete-btn").on("click", function(){
+
+            const selected_ids = [];
+            $(".each_select:checked").each(function() {
+                selected_ids.push($(this).val());
+            });
+
+            if(selected_ids.length < 1){
+                alert("Please select any Job Nature");
+            }else{
+                const conf = confirm("Are you sure you want to delete these Cash Job Natures?");
+                if(conf){
+                    $.ajax({
+                        url: 'jobNature/deletebyselection',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: { job_nature_ids: selected_ids },
+                        success: function(response){
+                            if(response.status){
+                                alert("Job Natures deleted successfully");
+                                location.reload();
+                            } else {
+                                alert("Failed to delete Job Natures");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Failed to delete Job Natures");
+                        }
+                    });
+                }
+            }
+
+
+        });
 
 
 
